@@ -1,10 +1,20 @@
 import * as React from 'react';
-import {Text, View, StyleSheet, StatusBar, Image, Alert} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  StatusBar,
+  Image,
+  Alert,
+  Touchable,
+  TouchableHighlight,
+} from 'react-native';
 import {COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../theme/theme';
 import AppHeader from '../components/AppHeader';
 import SettingComponent from '../components/SettingComponent';
 
 const UserAccountScreen = ({navigation}: any) => {
+  const [isLogin, setIsLogin] = React.useState(false);
   return (
     <View style={styles.container}>
       <StatusBar hidden />
@@ -15,14 +25,36 @@ const UserAccountScreen = ({navigation}: any) => {
           action={() => navigation.goBack()}
         />
       </View>
-
-      <View style={styles.profileContainer}>
-        <Image
-          source={require('../assets/image/avatar.png')}
-          style={styles.avatarImage}
-        />
-        <Text style={styles.avatarText}>HoNguyen</Text>
-      </View>
+      {isLogin ? (
+        <View style={styles.profileContainer}>
+          <Image
+            source={require('../assets/image/avatar.png')}
+            style={styles.avatarImage}
+          />
+          <Text style={styles.avatarText}>HoNguyen</Text>
+        </View>
+      ) : (
+        <TouchableHighlight
+          style={{
+            backgroundColor: COLORS.WhiteRGBA75,
+            padding: SPACING.space_16,
+            margin: SPACING.space_36,
+            borderRadius: 10,
+          }}
+          onPress={() => {
+            setIsLogin(!isLogin);
+          }}>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 20,
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}>
+            Login
+          </Text>
+        </TouchableHighlight>
+      )}
 
       <View style={styles.profileContainer}>
         <SettingComponent
