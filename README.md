@@ -1,6 +1,6 @@
 # Movie Booking App
 
-![Movie Booking App](app_screenshot.png)
+![Movie Booking App](meomeo.png)
 
 ## Description
 
